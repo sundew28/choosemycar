@@ -1,66 +1,153 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<p align="center"><h1>ChooseMyCar Laravel Test</h1></p>
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
 
-## About Laravel
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Installations / Instructions
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Clone:- https://github.com/sundew28/choosemycar
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+With this simple laravel app, you will get to see the basics of this is just a simple rest API to perform the following:-
 
-## Learning Laravel
+1. Users get to view tasks assigned to them per project-id.
+2. Users get to log the time spend on each task.
+3. Admin users get the option to list all logged time entry.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+The OWASP Top Ten is a standard awareness guide about web application security and consists of the top most critical security risks to web applications.Laravel takes care of many of these security features out the box. As part of the authentication i have implemented JWT authentication to
+generate token once the user login. And the bearer token is set while calling endpoints.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+The application is designed with the repository pattern design keeping in mind the S.O.L.I.D principles
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+To begin with after you have cloned the repository run composer to install all required packages.
 
-## Laravel Sponsors
+``` composer install ```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+Open `.env` file to configure your `database` and it's `name`, `host`, and `password` 
 
-### Premium Partners
+I had used a virtual domain to make api calls as part of testing using WAMP virtual domain feature. You can set the domain as you wish.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+Run the migration command to generate the tables
 
-## Contributing
+``` php artisan migrate ```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+After that run the db seeder command which will seed the users, projects, tasks table
 
-## Code of Conduct
+``` php artisan db:seed ```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+I have add 4 basic users and one admin user as default as below with password set for all as `121212`
 
-## Security Vulnerabilities
+```
+admin@example.com
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+andrew@example.com
 
-## License
+charles@example.com
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+ann@example.com
+
+liza@example.com
+
+```
+The projects and tasks tables i have used `faker` to generate dummy data to use.
+
+A middleware `RoleAuthorization` is created in `\app\Http\Middleware` which determines whether a logged user has access to called endpoints or not.
+
+If you navigate to the `\app\Http\Controllers` folder you can see there is JWTController file which authenticaties the user credentials while login and logout. The TasksController is set as the single entry point for the API endpoints.
+
+As mentioned before i have used the repository design pattern while coding the application. The main purpose of this is Centralization of the data access logic makes code easier to maintain, business and data access logic can be tested separately, reduces duplication of code, a lower chance of making programming errors.
+
+You can see i have created a `Repository` folder in `\app` and it holds one more folder `Eloquent` which has the controller files and outside this folder you have `Interface` class files set up which are registered in the providers folder under `RepositoryServiceProvider` file
+
+In order to get the bearer token you need to login with your user credentials to the URL ` <your-domain>/api/login `
+	<b>Params</b><br>
+	a) email
+	b) password
+
+There are 3 endpoints set up as below. I have used postman to test my API calls.
+
+1. `/tasks`
+
+    The purpose of this endpoint is to list all tasks assigned to specific user once they login. To call the endpoint you simply need to use the url as shown after you login 
+
+    ` <your-domain>/api/tasks `
+
+    Should give you a result like the example shown below
+
+    ```
+
+    [
+	    {
+	        "TaskId": 1,
+	        "Title": "Ipsam vitae iste magnam tenetur nulla eos autem.",
+	        "Content": "THEIR eyes bright and eager with many a strange tale, perhaps even with the day of the trees behind him. '--or next day, maybe,' the Footman continued in the house opened, and a large ring, with the Duchess, 'and that's the jury-box,' thought Alice, 'to speak to this mouse? Everything is so.",
+	        "DateCreated": "2022-11-14 12:35:27",
+	        "ProjectId": 2
+	    },
+	    {
+	        "TaskId": 3,
+	        "Title": "Inventore eos dolore autem ullam ut praesentium in omnis quia quo sunt.",
+	        "Content": "March Hare. 'Exactly so,' said Alice. 'Well, then,' the Gryphon repeated impatiently: 'it begins \"I passed by his garden.\"' Alice did not venture to say whether the blows hurt it or not. 'Oh, PLEASE mind what you're at!\" You know the way wherever she wanted much to know, but the Hatter said.",
+	        "DateCreated": "2022-11-14 12:35:27",
+	        "ProjectId": 3
+	    },
+	    {
+	        "TaskId": 11,
+	        "Title": "Et voluptas nemo et perspiciatis recusandae facilis iusto aut ipsa velit quo laborum.",
+	        "Content": "Alice thought she might as well she might, what a long hookah, and taking not the same, the next verse.' 'But about his toes?' the Mock Turtle sighed deeply, and began, in a game of croquet she was looking for them, and it'll sit up and leave the room, when her eye fell upon a little scream, half.",
+	        "DateCreated": "2022-11-14 12:35:27",
+	        "ProjectId": 1
+	    }
+    ]
+    
+    ```
+
+2. `/entry`
+   
+   The purpose of this endpoint is to log a time sheet entry for a task.
+
+   ` <your-domain>/api/entry `
+
+   <b>Params</b><br>
+	a) project_id ---> Integer
+	b) task_id    ---> Integer
+	c) start_time ---> DateFormat (y-m-d H:i:s)
+	d) end_time   ---> DateFormat (y-m-d H:i:s)
+
+	Should give you a result like the example shown below if successful
+
+    ```  
+	[
+    "Successfully created record."
+    ]
+    ``` 
+
+3. `tasks-time-entry`
+
+   The purpose of this endpoint is to list all time sheet entry for a admin user. The api.php has routes set such that only admin users have access to this end point.
+
+   ` <your-domain>/api/tasks-time-entry `
+
+   Should give you a result like the example shown below if successful.
+   ```
+   [
+	    {
+	        "id": 1,
+	        "project_id": 2,
+	        "task_id": 29,
+	        "start_time": "2022-11-14 09:20:00",
+	        "end_time": "2022-11-14 13:20:00",
+	        "deleted_at": null,
+	        "created_at": "2022-11-14T14:03:18.000000Z",
+	        "updated_at": "2022-11-14T14:03:18.000000Z"
+	    },
+	    {
+	        "id": 2,
+	        "project_id": 1,
+	        "task_id": 25,
+	        "start_time": "2022-11-14 09:20:00",
+	        "end_time": "2022-11-14 13:20:00",
+	        "deleted_at": null,
+	        "created_at": "2022-11-14T14:15:48.000000Z",
+	        "updated_at": "2022-11-14T14:15:48.000000Z"
+	    }
+   ]
+```
