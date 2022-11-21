@@ -2,22 +2,22 @@
 
 namespace App\Repository\Eloquent;
 
-use App\Models\Dealers;
+use App\Models\Vehicles;
 use App\Models\User;
-use App\Repository\DealersRepositoryInterface;
+use App\Repository\VehiclesRepositoryInterface;
 use Illuminate\Support\Collection;
+use Faker\Generator as Faker;
 
-class DealersRepository extends BaseRepository implements DealersRepositoryInterface
-{  
-
+class VehiclesRepository extends BaseRepository implements Dealers
+{
    /**
-    * DealersRepository constructor.
+    * VehiclesRepository constructor.
     *
     * @param Tickets $model
     */
-   public function __construct(Dealers $model)
+   public function __construct(Vehicles $model)
    {
-       parent::__construct($model);       
+       parent::__construct($model);
    }
 
    /**
@@ -43,6 +43,5 @@ class DealersRepository extends BaseRepository implements DealersRepositoryInter
               ];
        
        return $this->model->create($ticket);    
-   }  
-
+   }   
 }

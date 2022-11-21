@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use App\Repository\DealersRepositoryInterface;
+use App\Repository\VehiclesRepositoryInterface;
 
 /*
 | The purpose of this class DealerVehicleController is to set a single entry point for creating and processing records for dealers 
