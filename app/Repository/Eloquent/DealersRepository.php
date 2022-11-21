@@ -30,25 +30,26 @@ class DealersRepository extends BaseRepository implements DealersRepositoryInter
    }
    
    /**
+    * Get list of dealers with status on their inventory
+    * 
     * @return String Response
     */
    public function listData(): string
    {
         $data = $this->model->select('dealers.dealer_id', 'dealers.name AS Name', 'vehicles.mark', 'vehicles.colour', 'vehicles.status', 'vehicles.vehicle_dealer_id')
-            ->join('vehicles', 'vehicles.vehicle_dealer_id', '=', 'dealers.dealer_id')
-            //->groupBy('dealers.dealer_id')
+            ->join('vehicles', 'vehicles.vehicle_dealer_id', '=', 'dealers.dealer_id')            
             ->where('vehicles.deleted_at', '=', null)
             ->orderBy('vehicles.status')
-            ->get();
-            //->toArray();
+            ->get();            
 
-        // Grab unique dealer array
+        // Grab unique dealers array
         $dealersArray = [];
         foreach($data as $dealerData) {
             if(!in_array($dealerData->dealer_id, $dealersArray))
                 $dealersArray[] = $dealerData->dealer_id;
         }
 
+        // 
         $vehicleArray = [];
         foreach($dealersArray as $dealerData) {
 
@@ -87,10 +88,12 @@ class DealersRepository extends BaseRepository implements DealersRepositoryInter
         }
 
         $response = "";
+        
         foreach($vehicleArray as $vechicleData) {
             $response .= $vechicleData['Name']." : Available ".$vechicleData['Available']." Reserved ".$vechicleData['Reserved']." Sold ".$vechicleData['Sold']."\n\n";            
         }
         
+        // return a string response
         return $response;
    }
 }
