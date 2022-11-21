@@ -6,6 +6,7 @@ use App\Models\Dealers;
 use App\Models\User;
 use App\Repository\DealersRepositoryInterface;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Storage;
 
 class DealersRepository extends BaseRepository implements DealersRepositoryInterface
 {  
@@ -23,26 +24,73 @@ class DealersRepository extends BaseRepository implements DealersRepositoryInter
    /**
     * @return Collection
     */
-   /*public function all(): Collection
+   public function all(): Collection
    {
        return $this->model->all();    
-   }*/
-
+   }
+   
    /**
-    * @return string 
+    * @return String Response
     */
-   public function createTickets()
+   public function listData(): string
    {
-       $user = User::inRandomOrder()->limit(1)->get();
-       $ticket = ['name' => $user[0]['name'], 
-                  'email' => $user[0]['email'], 
-                  'subject' => $this->faker->sentence(10), 
-                  'content' => $this->faker->realText($maxNbChars = 300, $indexSize = 2),
-                  'created_by' => $user[0]['id'],
-                  'status' => 0
-              ];
-       
-       return $this->model->create($ticket);    
-   }  
+        $data = $this->model->select('dealers.dealer_id', 'dealers.name AS Name', 'vehicles.mark', 'vehicles.colour', 'vehicles.status', 'vehicles.vehicle_dealer_id')
+            ->join('vehicles', 'vehicles.vehicle_dealer_id', '=', 'dealers.dealer_id')
+            //->groupBy('dealers.dealer_id')
+            ->where('vehicles.deleted_at', '=', null)
+            ->orderBy('vehicles.status')
+            ->get();
+            //->toArray();
 
+        // Grab unique dealer array
+        $dealersArray = [];
+        foreach($data as $dealerData) {
+            if(!in_array($dealerData->dealer_id, $dealersArray))
+                $dealersArray[] = $dealerData->dealer_id;
+        }
+
+        $vehicleArray = [];
+        foreach($dealersArray as $dealerData) {
+
+            $sold = 0;
+            $active = 0;
+            $reserved = 0;
+            
+            foreach($data as $vehicleData) {
+ 
+                if($dealerData === $vehicleData->vehicle_dealer_id) {
+                    
+                    $vehicleArray[$dealerData]['Name'] = $vehicleData->Name;
+
+                    if($vehicleData->status == 'Sold'){
+                        $sold = $sold+1;
+                        $vehicleArray[$dealerData]['Sold'] = $sold;
+                    } else {
+                        $vehicleArray[$dealerData]['Sold'] = $sold;
+                    }
+
+                    if($vehicleData->status == 'Active'){
+                        $active = $active+1;
+                        $vehicleArray[$dealerData]['Available'] = $active;
+                    } else {
+                        $vehicleArray[$dealerData]['Available'] = $active;
+                    }
+
+                    if($vehicleData->status == 'Processing'){
+                        $reserved = $reserved+1;
+                        $vehicleArray[$dealerData]['Reserved'] = $reserved;
+                    } else {
+                        $vehicleArray[$dealerData]['Reserved'] = $reserved;
+                    }
+                }
+            }
+        }
+
+        $response = "";
+        foreach($vehicleArray as $vechicleData) {
+            $response .= $vechicleData['Name']." : Available ".$vechicleData['Available']." Reserved ".$vechicleData['Reserved']." Sold ".$vechicleData['Sold']."\n\n";            
+        }
+        
+        return $response;
+   }
 }

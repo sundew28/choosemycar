@@ -21,4 +21,9 @@ interface EloquentRepositoryInterface
     * @return Model
     */
    public function find($id): ?Model;
+
+   /**
+    * @param $filename    
+    */
+   public function insertData(string $model_type, string $filename): string;
 }

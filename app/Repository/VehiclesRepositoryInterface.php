@@ -1,12 +1,10 @@
 <?php
 namespace App\Repository;
 
-use App\Models\Dealers;
+use App\Models\Vehicles;
 use Illuminate\Support\Collection;
 
-interface DealersRepositoryInterface
+interface VehiclesRepositoryInterface
 {
    public function all(): Collection;
-
-   public function listData(): string;   
 }

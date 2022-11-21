@@ -11,7 +11,7 @@ class FeedListDealersCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'feed:list-dealers-with-cars {--lists=}';
+    protected $signature = 'feed:list-dealers-with-cars';
 
     /**
      * The console command description.
@@ -27,7 +27,8 @@ class FeedListDealersCommand extends Command
      */
     public function handle()
     {
-        $lists = $this->arguments('lists');
-        $this->output->write("<info>$lists</info>");
+         // List the dealers with cars status
+        $dealers_results = app()->call('App\Http\Controllers\DealerVehicleController@dealersListData');
+        $this->output->write("<info>$dealers_results</info>");
     }
 }

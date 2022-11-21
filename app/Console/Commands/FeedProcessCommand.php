@@ -32,14 +32,14 @@ class FeedProcessCommand extends Command
         $vehicles = $this->option('vehicles');//DealerVehicleController
 
         // Process the dealers file XML or JSON
-        $dealers_results = isset($dealers) ? 'hello' : 'No file input';
+        $dealers_results = isset($dealers) ? app()->call('App\Http\Controllers\DealerVehicleController@dealersExtractData', ['filename' => $dealers]) : 'No file input';
         // Process the vehicles file XML or JSON
-        $vehicles_results = isset($vehicles) ? 'hello' : 'No file input';
+        $vehicles_results = isset($vehicles) ? app()->call('App\Http\Controllers\DealerVehicleController@vehiclesExtractData', ['filename' => $vehicles]) : 'No file input';
 
         // Ouput the dealers results
-        $this->output->write("<info>$dealers_results</info>");
+        $this->output->write("<info>$dealers_results</info>\n\n");
         // Ouput the vehicles results
-        $this->output->write("<info>$vehicles_results</info>");
+        $this->output->write("<info>$vehicles_results</info>\n\n");
         
     }
 }

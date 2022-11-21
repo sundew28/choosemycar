@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('dealer_id');
             $table->string('name')->nullable();
-            $table->integer('phone_number')->unsigned()->nullable();
+            $table->bigInteger('phone_number')->unsigned()->nullable();
             $table->timestamps();
         });
     }
