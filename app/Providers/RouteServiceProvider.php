@@ -2,11 +2,17 @@
 
 namespace App\Providers;
 
-use Illuminate\Cache\RateLimiting\Limit;
+use App\Repository\EloquentRepositoryInterface; 
+use App\Repository\UserRepositoryInterface; 
+use App\Repository\DealersRepositoryInterface;
+use App\Repository\Eloquent\UserRepository; 
+use App\Repository\Eloquent\DealersRepository; 
+use App\Repository\Eloquent\BaseRepository; 
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\RateLimiter;
-use Illuminate\Support\Facades\Route;
+
+/*
+| You create the required class interface and register them with the RepositoryServiceProvider
+*/
 
 class RouteServiceProvider extends ServiceProvider
 {
