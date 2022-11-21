@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('vehicle_id')->nullable();
             $table->string('status')->nullable();
             $table->string('mark')->nullable();
-            $table->string('color')->nullable();
+            $table->string('colour')->nullable();
             $table->string('fuel')->nullable();
             $table->string('vehicle_dealer_id')->nullable();
             $table->foreign('vehicle_dealer_id')->references('dealer_id')->on('dealers');

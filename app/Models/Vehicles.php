@@ -14,5 +14,5 @@ class Vehicles extends Model
      *
      * @var array<int, string>
      */
-    protected $fillable = ['vehicle_id', 'status', 'mark', 'color', 'fuel', 'vehicle_dealer_id', 'images'];
+    protected $fillable = ['vehicle_id', 'status', 'mark', 'colour', 'fuel', 'vehicle_dealer_id', 'images'];
 }

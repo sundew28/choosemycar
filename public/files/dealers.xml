@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dealers>
+    <dealer>
+        <id>QSQLowo3CK</id>
+        <name>AB Cars</name>
+        <phone_number>9920820257</phone_number>
+        <image>https://example.org/dealers/ab-cars.jpg</image>
+    </dealer>
+    <dealer>
+        <id>Y5EFi5K8y5</id>
+        <name>CD Cars</name>
+        <phone_number>1519321710</phone_number>
+        <image>https://example.org/dealers/cd-cars.jpg</image>
+    </dealer>
+    <dealer>
+        <id>DzYzF8lVkD</id>
+        <name>EF Cars</name>
+        <phone_number>3318478908</phone_number>
+    </dealer>
+    <dealer>
+        <id>nNHjJjzRln</id>
+        <name>Space Cars</name>
+        <phone_number>3890378792</phone_number>
+        <image>https://example.org/dealers/space-cars.jpg</image>
+    </dealer>
+    <dealer>
+        <id>duo3rCJutc</id>
+        <name>Warrington Cards</name>
+        <phone_number>4475789611</phone_number>
+        <image>https://example.org/dealers/warrington-cars.jpg</image>
+    </dealer>
+    <dealer>
+        <id>6Hm83b6YG9</id>
+        <name>Manchester Cars</name>
+        <phone_number>5786857269</phone_number>
+        <image>https://example.org/dealers/logo.jpg</image>
+    </dealer>
+    <dealer>
+        <id>VNwDHKSwh0</id>
+        <name>Liverpool Cars</name>
+        <phone_number>1374343441</phone_number>
+        <image>https://example.com/dealers/logo.jpg</image>
+    </dealer>
+    <dealer>
+        <id>Gno3Bz5ndS</id>
+        <name>Gatley Cars</name>
+        <phone_number>2963232801</phone_number>
+        <image>https://example.org/dealers/gately-cars.jpg</image>
+    </dealer>
+    <dealer>
+        <id>Q6KwN7Sbd7</id>
+        <name>Super Cars</name>
+        <phone_number>7242603161</phone_number>
+        <image>https://example.org/dealers/super-cars.jpg</image>
+    </dealer>
+    <dealer>
+        <id>OBq4xdJBX6</id>
+        <name>Fast Cars</name>
+        <phone_number>5422102853</phone_number>
+        <image>http://example.org/dealers/fast-cars.jpg</image>
+    </dealer>
+</dealers>

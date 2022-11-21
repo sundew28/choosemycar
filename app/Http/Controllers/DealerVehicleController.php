@@ -38,5 +38,44 @@ class DealerVehicleController extends Controller
       $this->dealersRepository = $dealersRepository;
       $this->vehiclesRepository = $vehiclesRepository;
    }
+
+   /**    
+    * Extra dealers data from file
+    * 
+    * @return Response String results
+    */
+   public function dealersExtractData(string $filename): string
+   {    
+      // Response after inserting data
+        $dealersResponse = $this->dealersRepository->insertData("dealers",$filename);
+      // Return the result as String
+      return "Dealers response : ".$dealersResponse;
+   }
+
+   /**    
+    * Extra vehicles data from file
+    * 
+    * @return Response String results
+    */
+   public function vehiclesExtractData(string $filename): string
+   {    
+      // Response after inserting data
+        $vehiclesResponse = $this->vehiclesRepository->insertData("vehicles", $filename);
+      // Return the result as String
+      return "Vehicles response : ".$vehiclesResponse;
+   }
+
+   /**    
+    * Extra vehicles data from file
+    * 
+    * @return Response String results
+    */
+   public function dealersListData(): string
+   {    
+      // Get dealers records
+        $vehiclesResponse = $this->dealersRepository->listData();
+      // Return the result as String
+      return "Vehicles response : \n\n".$vehiclesResponse;
+   }
    
 }

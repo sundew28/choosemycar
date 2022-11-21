@@ -7,4 +7,6 @@ use Illuminate\Support\Collection;
 interface DealersRepositoryInterface
 {
    public function all(): Collection;
+
+   public function listData(): string;   
 }
