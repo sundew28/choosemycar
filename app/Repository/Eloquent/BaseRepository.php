@@ -34,6 +34,7 @@ class BaseRepository implements EloquentRepositoryInterface
  
     /**
     * @param $id
+    * 
     * @return Model
     */
     public function find($id): ?Model
@@ -42,16 +43,21 @@ class BaseRepository implements EloquentRepositoryInterface
     }
 
     /**
-    * @return string 
-    */
+     * Extract and insert data from file
+     * 
+     * @param String $model_type
+     * 
+     * @param String $filename 
+     * 
+     * @return string response
+     */
    public function insertData(string $model_type, string $filename): string
    {
        // Get the file type XML or JSON
        $infoPath = pathinfo(public_path('/files/'.$filename));
        $extension = $infoPath['extension'];
 
-       // based on extension type extract data
-        //dd($model_type);
+       // based on extension type extract data       
        switch ($extension) {
 
         case 'xml':
