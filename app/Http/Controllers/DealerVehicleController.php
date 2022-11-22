@@ -42,6 +42,8 @@ class DealerVehicleController extends Controller
    /**    
     * Extract dealers data from file
     * 
+    * @param String $filename
+    * 
     * @return Response String results
     */
    public function dealersExtractData(string $filename): string
@@ -55,6 +57,8 @@ class DealerVehicleController extends Controller
 
    /**    
     * Extract vehicles data from file
+    * 
+    * @param String $filename
     * 
     * @return Response String results
     */
