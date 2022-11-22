@@ -40,7 +40,7 @@ class DealerVehicleController extends Controller
    }
 
    /**    
-    * Extra dealers data from file
+    * Extract dealers data from file
     * 
     * @return Response String results
     */
@@ -54,7 +54,7 @@ class DealerVehicleController extends Controller
    }
 
    /**    
-    * Extra vehicles data from file
+    * Extract vehicles data from file
     * 
     * @return Response String results
     */
@@ -68,7 +68,7 @@ class DealerVehicleController extends Controller
    }
 
    /**    
-    * Extra vehicles data from file
+    * Extract vehicles data from file
     * 
     * @return Response String results
     */
