@@ -31,7 +31,7 @@ As mentioned before i have used the repository design pattern while coding the a
 
 You can see i have created a `Repository` folder in `\app` and it holds one more folder `Eloquent` which has the controller files and outside this folder you have `Interface` class files set up which are registered in the providers folder under `RepositoryServiceProvider` file
 
-In order to get app in action you can the following console commands
+In order to see the app in action you can runthe following console commands
 	
 	a) php artisan feed:process --dealers=<YOUR_DEALER_XML_OR_JSON_FILE> --vehicles=<YOUR_VEHICLE_XML_OR_JSON_FILE>
 	b) php artisan feed:list-dealers-with-cars
