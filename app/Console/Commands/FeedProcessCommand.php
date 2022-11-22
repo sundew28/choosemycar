@@ -29,7 +29,7 @@ class FeedProcessCommand extends Command
     {
         // grab the file names if provided
         $dealers = $this->option('dealers');
-        $vehicles = $this->option('vehicles');//DealerVehicleController
+        $vehicles = $this->option('vehicles');
 
         // Process the dealers file XML or JSON
         $dealers_results = isset($dealers) ? app()->call('App\Http\Controllers\DealerVehicleController@dealersExtractData', ['filename' => $dealers]) : 'No file input';

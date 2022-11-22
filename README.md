@@ -36,6 +36,8 @@ In order to see the app in action you can run the following console commands
 	a) php artisan feed:process --dealers=<YOUR_DEALER_XML_OR_JSON_FILE> --vehicles=<YOUR_VEHICLE_XML_OR_JSON_FILE>
 	b) php artisan feed:list-dealers-with-cars
 
+` On succesfull creation of records you will get a success message for the first console command`
+
 ```
 An example how your output will be when you list the dealers and their vehicle inventory status
 
@@ -62,3 +64,4 @@ Space Cars : Available 0 Reserved 2 Sold 1
 Fast Cars : Available 0 Reserved 3 Sold 2
 
 ```
+I have not created the test cases to test the unit test or functional test on a programmer or user perspective. This can be achived but wanted to limit within the time given what i can do.
