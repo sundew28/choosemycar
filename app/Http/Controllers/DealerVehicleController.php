@@ -47,7 +47,8 @@ class DealerVehicleController extends Controller
    public function dealersExtractData(string $filename): string
    {    
       // Response after inserting data
-        $dealersResponse = $this->dealersRepository->insertData("dealers",$filename);
+      $dealersResponse = $this->dealersRepository->insertData("dealers",$filename);
+      
       // Return the result as String
       return "Dealers response : ".$dealersResponse;
    }
@@ -60,7 +61,8 @@ class DealerVehicleController extends Controller
    public function vehiclesExtractData(string $filename): string
    {    
       // Response after inserting data
-        $vehiclesResponse = $this->vehiclesRepository->insertData("vehicles", $filename);
+      $vehiclesResponse = $this->vehiclesRepository->insertData("vehicles", $filename);
+
       // Return the result as String
       return "Vehicles response : ".$vehiclesResponse;
    }
@@ -73,7 +75,8 @@ class DealerVehicleController extends Controller
    public function dealersListData(): string
    {    
       // Get dealers records
-        $vehiclesResponse = $this->dealersRepository->listData();
+      $vehiclesResponse = $this->dealersRepository->listData();
+
       // Return the result as String
       return "Vehicles response : \n\n".$vehiclesResponse;
    }

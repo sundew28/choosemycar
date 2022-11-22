@@ -49,7 +49,7 @@ class DealersRepository extends BaseRepository implements DealersRepositoryInter
                 $dealersArray[] = $dealerData->dealer_id;
         }
 
-        // 
+        // Vehicle array variable
         $vehicleArray = [];
         foreach($dealersArray as $dealerData) {
 
@@ -88,7 +88,7 @@ class DealersRepository extends BaseRepository implements DealersRepositoryInter
         }
 
         $response = "";
-        
+
         foreach($vehicleArray as $vechicleData) {
             $response .= $vechicleData['Name']." : Available ".$vechicleData['Available']." Reserved ".$vechicleData['Reserved']." Sold ".$vechicleData['Sold']."\n\n";            
         }
